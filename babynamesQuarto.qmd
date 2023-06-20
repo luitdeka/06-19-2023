@@ -21,6 +21,7 @@ x <- read_csv("data/babynames.csv", show_col_types = FALSE)
 ```{r}
 #| message: false
 x |>
-  select(year, sex, name, prop)
+  select(year, sex, name) 
+  
 ```
 
