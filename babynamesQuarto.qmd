@@ -1,0 +1,26 @@
+---
+title: "Babynames Data"
+author: "Luit Deka"
+format: html
+execute: 
+  echo: false
+---
+
+```{r}
+#| message: false
+library(tidyverse)
+```
+
+
+```{r}
+#| message: false
+x <- read_csv("data/babynames.csv", show_col_types = FALSE)
+```
+
+
+```{r}
+#| message: false
+x |>
+  select(year, sex, name, prop)
+```
+
