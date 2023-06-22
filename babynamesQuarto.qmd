@@ -1,5 +1,5 @@
 ---
-title: "Babynames Data"
+title: "BabyNames with -I"
 author: "Luit Deka"
 format: html
 execute: 
@@ -8,20 +8,35 @@ execute:
 
 ```{r}
 #| message: false
+#| warning: false
 library(tidyverse)
 ```
 
 
 ```{r}
 #| message: false
+#| warning: false
 x <- read_csv("data/babynames.csv", show_col_types = FALSE)
 ```
 
 
 ```{r}
 #| message: false
+#| warning: false
 x |>
-  select(year, sex, name) 
+  summarise(sum_n = sum(n), 
+     sum_prop = sum(prop),
+      .by = c(year, sex)) |>
+  ggplot(aes(x = year,
+             y = sum_prop,
+             fill = sex)) +
+  geom_area() +
+  labs(x = 'Year',
+       y='Percent Babies with I-name',
+       title='US Baby Names Ending in I',
+       subtitle = "Female Babies with Names ending in -I increased over the males starting from the 1930s") +
+  scale_y_continuous(labels = scales::percent_format())
+```
   
 ```
 
